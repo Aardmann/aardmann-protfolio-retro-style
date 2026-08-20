@@ -46,6 +46,52 @@ const CONFIG = {
     { label: "X / Twitter", value: "@aardmann", href: "https://x.com/aardmann" },
   ],
 
+  // CERTIFICATES - each entry becomes one badge card in the Certificates section.
+  certificates: [
+    {
+      name: "Digital Literacy",
+      issuer: "IBM SkillsBuild",
+      description: "Foundational digital skills covering computer use, internet navigation and digital communication, plus core concepts in AI, software engineering and data analysis.",
+      url: "https://www.credly.com/badges/d8d1846b-da05-4fc7-97af-1982d5ed0826/public_url",
+      image: "https://images.credly.com/images/4a2ec756-53d8-465e-9706-26d00f4c587f/linkedin_thumb_BadgeEmblem_DigitalLiteracy.png",
+    },
+    {
+      name: "Project Management Fundamentals",
+      issuer: "IBM SkillsBuild",
+      description: "Project management concepts and the full project lifecycle initiating, planning, executing, monitoring and closing including charters, work breakdown structures and change requests.",
+      url: "https://www.credly.com/badges/5d7948cd-5550-42d4-94f8-34fd0e7f1d8f/public_url",
+      image: "https://images.credly.com/images/a4f13de3-9fc7-4d94-8f31-076999c2d06e/linkedin_thumb_BadgeEmblem_ProjectManagementFundamentals.png",
+    },
+  ],
+
+  // WORK EXPERIENCE - rendered left-to-right as a horizontally scrollable timeline.
+  experience: [
+    {
+      role: "Founder",
+      company: "NxNx Tech",
+      period: "Ongoing",
+      description: "Running a technology studio building mobile apps, websites and custom software for clients across Ghana.",
+    },
+    {
+      role: "Website Developer & Digital Manager",
+      company: "The Outback Hotel",
+      period: "2023 — Present",
+      description: "Built the hotel's online booking website and continue to manage its ongoing online activity.",
+    },
+    {
+      role: "Web Developer",
+      company: "RM Store",
+      period: "Client Project",
+      description: "Built the beta version of RM Store, a custom online clothing shop.",
+    },
+    {
+      role: "Mobile App Developer",
+      company: "Ghana Trotro Transit",
+      period: "Client Project",
+      description: "Built Ghana's first public transport mobile app, gtt.nxnx.tech.",
+    },
+  ],
+
 };
 
 /* ==========================================================================
@@ -174,6 +220,45 @@ function renderContact() {
   `).join("");
 }
 renderContact();
+
+/* ==========================================================================
+   CERTIFICATES - render badge cards from CONFIG.certificates
+   ========================================================================== */
+function renderCertificates() {
+  const grid = document.getElementById("certGrid");
+  if (!grid) return;
+  grid.innerHTML = CONFIG.certificates.map(cert => `
+    <a class="cert-card" href="${cert.url}" target="_blank" rel="noopener noreferrer">
+      <div class="cert-badge">
+        <img src="${cert.image}" alt="${cert.name} badge" loading="lazy" />
+      </div>
+      <div class="cert-body">
+        <p class="cert-issuer">${cert.issuer}</p>
+        <h3>${cert.name}</h3>
+        <p class="cert-desc">${cert.description}</p>
+        <span class="cert-link">Verify on Credly →</span>
+      </div>
+    </a>
+  `).join("");
+}
+renderCertificates();
+
+/* ==========================================================================
+   EXPERIENCE - render horizontal scrolling timeline from CONFIG.experience
+   ========================================================================== */
+function renderExperience() {
+  const track = document.getElementById("experienceTrack");
+  if (!track) return;
+  track.innerHTML = CONFIG.experience.map(job => `
+    <div class="exp-card">
+      <span class="exp-period">${job.period}</span>
+      <h3 class="exp-role">${job.role}</h3>
+      <p class="exp-company">${job.company}</p>
+      <p class="exp-desc">${job.description}</p>
+    </div>
+  `).join("");
+}
+renderExperience();
 
 /* ==========================================================================
    GITHUB PROJECTS - live fetch, filtered by CONFIG.github.hiddenRepos

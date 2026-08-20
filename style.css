@@ -481,6 +481,132 @@ img{ max-width: 100%; display: block; }
 .repo-lang-dot{ width:9px; height:9px; border-radius:50%; display:inline-block; margin-right: 0.4em; background: var(--green-deep); }
 
 /* ============================================================
+   EXPERIENCE (horizontal scrolling timeline)
+   ============================================================ */
+.experience{ border-bottom: 2px solid var(--ink); background: var(--paper-alt); }
+.experience-inner{ padding-bottom: 3.5rem; }
+
+.experience-scroll{
+  margin-top: 2rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 1.5rem;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+.experience-scroll::-webkit-scrollbar{ height: 10px; }
+.experience-scroll::-webkit-scrollbar-track{ background: var(--paper); border: 1px solid var(--ink); }
+.experience-scroll::-webkit-scrollbar-thumb{ background: var(--green-deep); border: 2px solid var(--ink); }
+.experience-scroll{ scrollbar-color: var(--green-deep) var(--paper); scrollbar-width: thin; }
+
+.experience-track{
+  display: flex;
+  gap: 1.5rem;
+  position: relative;
+  padding: 0.5rem 0.25rem 1.75rem;
+}
+.experience-track::before{
+  content:'';
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 0.9rem;
+  height: 2px;
+  background: var(--ink);
+}
+
+.exp-card{
+  scroll-snap-align: start;
+  flex: 0 0 auto;
+  width: 260px;
+  background: var(--card);
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow-sm);
+  padding: 1.3rem;
+  position: relative;
+}
+.exp-card::before{
+  content:'';
+  position: absolute;
+  left: 1.3rem;
+  bottom: -1.75rem;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--green);
+  border: 2px solid var(--ink);
+}
+.exp-period{
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--ink);
+  color: var(--green);
+  padding: 0.25em 0.55em;
+  margin-bottom: 0.7em;
+}
+.exp-role{ font-size: 1rem; margin-bottom: 0.15em; }
+.exp-company{ font-family: var(--font-mono); font-size: 0.82rem; color: var(--green-deep); font-weight: 600; margin-bottom: 0.6em; }
+.exp-desc{ color: var(--grey); font-size: 0.88rem; margin: 0; }
+
+.experience-hint{
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--grey);
+  margin: 0;
+}
+@media (min-width: 860px){ .experience-hint{ display: none; } }
+
+/* ============================================================
+   CERTIFICATES
+   ============================================================ */
+.cert-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+.cert-card{
+  display: flex;
+  gap: 1.1rem;
+  align-items: flex-start;
+  border: 2px solid var(--ink);
+  background: var(--card);
+  box-shadow: var(--shadow-md);
+  padding: 1.3rem;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.cert-card:hover{ transform: translate(-2px,-2px); box-shadow: var(--shadow-lg); }
+.cert-badge{
+  flex-shrink: 0;
+  width: 64px; height: 64px;
+  border: 2px solid var(--ink);
+  background: var(--paper-alt);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.cert-badge img{ width: 100%; height: 100%; object-fit: contain; }
+.cert-issuer{
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--green-deep);
+  margin: 0 0 0.3em;
+}
+.cert-body h3{ font-size: 1rem; margin-bottom: 0.35em; }
+.cert-desc{ color: var(--grey); font-size: 0.85rem; margin-bottom: 0.8em; }
+.cert-link{
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-bottom: 2px solid var(--ink);
+}
+
+/* ============================================================
    CONTACT
    ============================================================ */
 .contact{ background: var(--green); }
